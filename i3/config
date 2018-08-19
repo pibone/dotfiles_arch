@@ -1,0 +1,266 @@
+# i3 config file (v4)
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+### Set mod key (Mod1=<Alt>, Mod4=<Super>) ###
+set $mod Mod4
+
+
+### i3 configurations ###
+
+new_window pixel 2
+new_float normal
+hide_edge_borders none
+font pango:Fira Code 12, TerminessTTF Nerd Font 12
+
+floating_modifier $mod
+focus_follows_mouse no
+workspace_auto_back_and_forth yes
+for_window [urgent=latest] focus
+
+
+### i3bar ###
+
+bar {
+    position bottom
+    strip_workspace_numbers yes
+    #tray_output none
+    separator_symbol "|"
+
+    status_command i3status --config ~/.config/i3/i3status.conf
+    # use patched i3status
+    #status_command ~/src/i3status/i3status --config ~/.i3/i3status.conf
+    #status_command i3bf
+    #status_command ~/.i3/i3-conky-initscript.sh
+
+#   statusbar colors       border      background   text
+    colors {
+        background          #2f343f
+        statusline          #ffffff
+        separator           #00ff00
+        focused_workspace   #9e9e9e        #66aa66        #2d323d
+        active_workspace    #81c181        #4084d6        #2d323d
+        inactive_workspace  #2f343f        #404552        #9e9e9e
+        urgent_workspace    #4084d6        #2f343f        #4084d6
+    }
+}
+
+
+### i3 theming ###
+
+## class                 border  backgr. text    indic.  child_border
+client.focused          #808280 #00ff00 #80FFF9 #FDF6E3
+client.focused_inactive #434745 #434745 #16A085 #454948
+client.unfocused        #434745 #434745 #16A085 #454948
+client.urgent           #CB4B16 #FDF6E3 #16A085 #268BD2
+client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
+client.background       #2B2C2B
+
+
+### i3 workspace ###
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+
+bindsym $mod+Ctrl+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Ctrl+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Ctrl+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Ctrl+4 move container to workspace $ws4; workspace $ws4
+
+bindsym $mod+Tab workspace back_and_forth
+bindsym $mod+Shift+Tab move container to workspace back_and_forth; workspace back_and_forth
+bindsym $mod+Ctrl+h workspace next
+bindsym $mod+Ctrl+l workspace prev
+
+
+### i3 bindings ###
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec i3-msg exit
+
+## window navigation
+bindsym $mod+minus scratchpad show
+bindsym $mod+a focus parent
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+## window moving
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+minus move scratchpad
+
+
+## tiling mode
+bindsym $mod+slash split h;exec notify-send 'tile horizontally'
+bindsym $mod+v split v;exec notify-send 'tile vertically'
+bindsym $mod+backslash split toggle
+
+## fullscreen
+bindsym $mod+f fullscreen toggle
+bindsym $mod+Shift+f fullscreen toggle global
+
+## layout style
+bindsym $mod+Ctrl+s layout stacking
+bindsym $mod+Ctrl+t layout tabbed
+bindsym $mod+Ctrl+w layout default
+bindsym $mod+Ctrl+e layout toggle split
+
+## toggles floating and sticky
+bindsym $mod+space floating toggle
+bindsym $mod+Shift+s sticky toggle
+
+## kill focused window
+bindsym $mod+q kill
+
+
+### i3-gaps ###
+
+gaps inner 10
+gaps outer -4
+smart_gaps on
+smart_borders on
+
+set $mode_gaps_outer "Outer Gaps: k|j|0 (local), Shift + k|j|0 (global)"
+set $mode_gaps_inner "Inner Gaps: k|j|0 (local), Shift + k|j|0 (global)"
+set $mode_gaps "Gaps: (o) outer, (i) inner"
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode $mode_gaps {
+        bindsym o      mode $mode_gaps_outer
+        bindsym i      mode $mode_gaps_inner
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode $mode_gaps_inner {
+        bindsym k	gaps inner current plus 5
+        bindsym j	gaps inner current minus 5
+        bindsym 0	gaps inner current set 0
+
+        bindsym Shift+k	gaps inner all plus 5
+        bindsym Shift+j	gaps inner all minus 5
+        bindsym Shift+0	gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode $mode_gaps_outer {
+        bindsym k	gaps outer current plus 5
+        bindsym j	gaps outer current minus 5
+        bindsym 0	gaps outer current set 0
+
+        bindsym Shift+k	gaps outer all plus 5
+        bindsym Shift+j	gaps outer all minus 5
+        bindsym Shift+0	gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+### App mode ###
+
+set $mode_app "(w)eb_browser, (e)ditor"
+bindsym $mod+p mode $app_mode
+mode $mode_app {
+  bindsym e exec code, mode "default"
+  bindsym w exec google-chrome-stable, mode "default"
+
+  bindsym Escape mode "default"
+  bindsym Return mode "default"
+}
+
+
+### System mode ###
+
+set $mode_system "(l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, shut(d)own"
+bindsym $mod+Shift+q mode $mode_system
+mode $mode_system {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym d exec --no-startup-id i3exit shutdown, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+### Resize mode (you can also use the mouse for that)
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym j resize grow height 5 px or 5 ppt
+        bindsym k resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+### System manipulation bindings ###
+
+## sound/music
+bindsym $mod+Up exec --no-startup-id ponymix increase 5
+bindsym $mod+Down exec --no-startup-id ponymix decrease 5
+bindsym $mod+i exec playerctl play-pause
+bindsym $mod+o exec playerctl next
+bindsym $mod+u exec playerctl previous
+
+
+### Start applications
+
+## Important!! Do not remove
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id pulseaudio
+
+## Bindings
+bindsym $mod+Escape exec --no-startup-id sh $XDG_CONFIG_HOME/i3/blurlock
+bindsym $mod+z exec --no-startup-id morc_menu
+bindsym $mod+d exec dmenu_recency
+bindsym $mod+Return exec termite
+bindsym $mod+b exec termite -e 'bmenu'
+# bindsym $mod+ exec ranger
+bindsym $mod+x --release exec --no-startup-id xkill
+
+## Other apps
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+# exec --no-startup-id nm-applet
+# exec --no-startup-id clipit
+# exec --no-startup-id spotify
+# exec --no-startup-id chromium
+# exec --no-startup-id volumeicon
+exec --no-startup-id termite
+# exec_always --no-startup-id xautolock -time 1 -locker "sh $XDG_CONFIG_HOME/i3/blurlock"
+
+## Open specific applications in floating mode
+for_window [title="File Transfer*"] floating enable
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-gtk-greeter-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Pavucontrol"] floating enable
