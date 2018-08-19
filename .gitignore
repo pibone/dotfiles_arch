@@ -1,0 +1,14 @@
+# Ignore everything
+*
+!*/
+# Whitelist
+!.gitignore
+!.gitmodules
+!install.sh
+!/zsh/.zpreztorc
+!/zsh/.zshrc
+!/i3/**
+!/shell/**
+!/spacemacs.d/**
+!install-archlinux.sh
+!editorconfig
