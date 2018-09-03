@@ -1,3 +1,6 @@
+echo "Your linux kernel"
+uname -r
+
 echo "First, update the system"
 yaourt -Syyu
 
@@ -9,7 +12,7 @@ yaourt -Syyu
 # yaourt -S code --noconfirm
 
 echo "So, you'll need to wait for a long time, sorry for that. I could ask you for some installations, sorry for that"
-yaourt -S base-devel cmake nodejs npm termite playerctl zathura libmpdclient mpd thunar dex linux414-headers virtualbox-host-dkms ranger morc_menu nitrogen viewnior zsh enchant dunst compton bmenu htop pulseaudio git google-chrome emacs xclip vim powerline-fonts ttf-fira-code ponymix ctags python python-pip python-pygments wakatime pandoc typescript ycmd-git aspell aspell-es aspell-en prettier libpng zlib poppler poppler-glib editorconfig-core-c the_platinum_searcher-bin the_silver_searcher ack sift-bin ledger --noconfirm
+yaourt -S icu base-devel cmake node-lts-carbon npm linux414-broadcom-wl termite playerctl zathura libmpdclient mpd thunar dex linux414-headers virtualbox-host-dkms ranger morc_menu nitrogen viewnior zsh enchant dunst compton bmenu htop pulseaudio git google-chrome emacs xclip vim vi-vim-symlink powerline-fonts ttf-fira-code ponymix ctags python python-pip python-pygments wakatime pandoc typescript ycmd-git aspell aspell-es aspell-en prettier libpng zlib poppler poppler-glib editorconfig-core-c the_platinum_searcher-bin the_silver_searcher ack sift-bin ledger --noconfirm
 
 sudo npm -g tern
 

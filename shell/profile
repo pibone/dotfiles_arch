@@ -30,6 +30,8 @@ export ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT:=$HOME/Android/Sdk}
 # PATH for ZSH config files
 export ZDOTDIR=${ZDOTDIR:=$XDG_CONFIG_HOME/zsh}
 
-# EDITOR
+# Other
 export EDITOR=emacs
+export BROWSER=google-chrome-stable
+export COUNTRY=ES
 
