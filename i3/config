@@ -21,7 +21,7 @@ workspace_auto_back_and_forth yes
 ### i3bar ###
 
 bar {
-    position bottom
+    position top
     strip_workspace_numbers yes
     #tray_output none
     separator_symbol "|"

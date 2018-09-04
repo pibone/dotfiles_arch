@@ -2,17 +2,17 @@ echo "Your linux kernel"
 uname -r
 
 echo "First, update the system"
-yaourt -Syyu
+yaourt -Syyu --noconfirm
 
 
 This is for vscode install
-echo "Second, some builds needs to higher the number of files opened. I'll change that"
-sudo echo "$USERNAME 	hard	nofile		20000" >> /etc/security/limits.conf
-sudo echo "$USERNAME		soft	nofile		10000" >> /etc/security/limits.conf
-yaourt -S code --noconfirm
+#echo "Second, some builds needs to higher the number of files opened. I'll change that"
+#sudo echo "$USERNAME 	hard	nofile		20000" >> /etc/security/limits.conf
+#sudo echo "$USERNAME		soft	nofile		10000" >> /etc/security/limits.conf
+# yaourt -S code --noconfirm
 
 echo "So, you'll need to wait for a long time, sorry for that. I could ask you for some installations, sorry for that"
-yaourt -S arandr network-manager-applet clipit xfce4-power-manager pamac icu base-devel cmake firefox node-lts-carbon npm linux414-broadcom-wl termite playerctl zathura libmpdclient mpd thunar dex linux414-headers virtualbox-host-dkms ranger morc_menu nitrogen viewnior zsh enchant dunst compton bmenu htop pulseaudio git google-chrome emacs xclip vim vi-vim-symlink powerline-fonts ttf-fira-code ponymix ctags python python-pip python-pygments wakatime pandoc typescript ycmd-git aspell aspell-es aspell-en prettier libpng zlib poppler poppler-glib editorconfig-core-c the_platinum_searcher-bin the_silver_searcher ack sift-bin ledger --noconfirm
+yaourt -S arandr sky network-manager-applet clipit xfce4-power-manager pamac icu base-devel cmake firefox node-lts-carbon npm linux414-broadcom-wl termite playerctl zathura libmpdclient mpd thunar dex linux414-headers virtualbox-host-dkms ranger morc_menu nitrogen viewnior zsh enchant dunst compton bmenu htop pulseaudio git google-chrome emacs xclip vim vi-vim-symlink powerline-fonts ttf-fira-code ponymix ctags python python-pip python-pygments wakatime pandoc typescript ycmd-git aspell aspell-es aspell-en prettier libpng zlib poppler poppler-glib editorconfig-core-c the_platinum_searcher-bin the_silver_searcher ack sift-bin ledger --noconfirm
 
 sudo npm -g tern
 
